@@ -14,7 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-indigo-50 flex flex-col">
-        <header className="bg-indigo-600 text-white flex flex-col items-center justify-center" style={{ height: '33vh' }}>
+        <header className="bg-indigo-600 text-white flex flex-col items-center justify-center" style={{ height: '20vh' }}>
           <nav className="flex gap-6 mb-4">
             <NavLink to="/" onClick={handleHome} className="font-bold text-xl">🎬 Movie Watchlist</NavLink>
             <NavLink to="/watchlist" className="hover:underline text-xl">My Watchlist</NavLink>

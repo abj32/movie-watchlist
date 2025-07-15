@@ -1,20 +1,30 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { searchMovies } from "../services/omdb.js";
 
 export default function SearchBar({ setResults }) {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault(); // prevents page reload
     
-    if (query.trim() !== "") {
-      setResults([
-        { title: `You searched for "${query}"`, id: 1 },
-        { title: "Example result", id: 2 },
-      ]);
+    // Do nothing on blank search
+    if (query.trim() === "") return;
+
+    setResults([]); // Clear results
+
+    const results = await searchMovies(query);
+    if (results.Response === "True" && results.Search) {
+      console.log(results.Search)
+      // Filter out duplicate movies and limit to 5
+      setResults(results.Search.filter((movie, index, self) =>
+        index === self.findIndex((m) => m.imdbID === movie.imdbID)).slice(0, 5));
 
       navigate("/");
+    } else {
+      setResults([]);
+      console.error("Search failed:", results.Error);
     }
   }
 
