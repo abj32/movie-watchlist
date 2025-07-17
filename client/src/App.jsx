@@ -14,17 +14,17 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-indigo-50 flex flex-col">
-        <header className="relative h-[15vh] bg-indigo-600 text-white p-3 flex flex-row items-center">
-          <NavLink to="/" onClick={handleHome} className="text-5xl font-bold tracking-wide" style={{ fontFamily: "'Lilita_One', cursive, sans-serif" }}>
+        <header className="relative bg-indigo-600 text-white px-6 py-10 flex flex-row items-center">
+          <NavLink to="/" onClick={handleHome} className="sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wide" style={{ fontFamily: "'Lilita_One', cursive, sans-serif" }}>
             🎥ReelSearch
           </NavLink>
 
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-full max-w-[600px]">
+          <div className="absolute left-1/2 -translate-x-1/2 w-1/3">
             <SearchBar setResults={setResults} />
           </div>
 
-          <div className="absolute left-1/2 transform translate-x-[320px]">
-            <NavLink to="/watchlist" className="hover:underline text-xl">
+          <div className="absolute translate-x-[115px] left-1/2 sm:translate-x-[140px] md:translate-x-[180px] lg:translate-x-[225px] xl:translate-x-[300px]">
+            <NavLink to="/watchlist" className="text-xs sm:text-xs md:text-sm lg:text-base xl:text-lg hover:underline">
               My Watchlist
             </NavLink>
           </div>
