@@ -19,7 +19,7 @@ export default function SearchBar({ setResults }) {
       console.log(results.Search)
       // Filter out duplicate movies and limit to 5
       setResults(results.Search.filter((movie, index, self) =>
-        index === self.findIndex((m) => m.imdbID === movie.imdbID)).slice(0, 5));
+        index === self.findIndex((m) => m.imdbID === movie.imdbID)).slice(0, 10));
 
       navigate("/");
     } else {
@@ -35,7 +35,7 @@ export default function SearchBar({ setResults }) {
         placeholder="Search for Movie Title..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="w-full p-4 text-lg rounded-full shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        className="w-full p-3 text-base sm:text-lg md:text-xl indent-1 sm:indent-2 md:indent-3 lg:indent-4 rounded-full shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
       />
     </form>
   )

@@ -13,9 +13,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-indigo-50 flex flex-col">
-        <header className="relative bg-indigo-600 text-white px-6 py-10 flex flex-row items-center">
-          <NavLink to="/" onClick={handleHome} className="sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wide" style={{ fontFamily: "'Lilita_One', cursive, sans-serif" }}>
+      <div className="min-h-screen bg-indigo-100 flex flex-col">
+        <header className="relative bg-indigo-600 text-white px-1 sm:px-2 md:px-3 lg:px-4 xl:px-5 py-10 flex flex-row items-center">
+          <NavLink to="/" onClick={handleHome} className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wide" style={{ fontFamily: "'Lilita_One', cursive, sans-serif" }}>
             🎥ReelSearch
           </NavLink>
 
@@ -30,7 +30,7 @@ function App() {
           </div>
         </header>
 
-        <main className="p-6">
+        <main className="p-3 sm:p-4 md:p-5 lg:p-6">
           <Routes>
             <Route path="/" element={<Home results={results} />} />
             <Route path="/watchlist" element={<Watchlist />} />
