@@ -13,7 +13,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-indigo-100 flex flex-col">
+      <div className="min-h-screen flex flex-col">
         <header className="relative bg-indigo-600 text-white px-1 sm:px-2 md:px-3 lg:px-4 xl:px-5 py-10 flex flex-row items-center">
           <NavLink to="/" onClick={handleHome} className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wide" style={{ fontFamily: "'Lilita_One', cursive, sans-serif" }}>
             🎥ReelSearch

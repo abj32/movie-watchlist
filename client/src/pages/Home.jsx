@@ -2,9 +2,9 @@ export default function Home( { results }) {
   return (
     <div className="w-full">
       {results.length > 0 && (
-        <ul className="flex flex-wrap gap-x-[1.25%] gap-y-2 sm:gap-y-3 md:gap-y-4 w-full justify-center">
+        <ul className="flex flex-wrap gap-x-[2%] gap-y-4 sm:gap-y-5 md:gap-y-6 w-full justify-center">
           {results.map((movie) => (
-            <li key={movie.imdbID} className="w-[19%] bg-white rounded-lg shadow-lg overflow-hidden">
+            <li key={movie.imdbID} className="w-[17%] bg-white rounded-lg overflow-hidden shadow-lg">
               <img
                 src={movie.Poster !== "N/A" ? movie.Poster : "https://placehold.co/300x412?text=No+Image"}
                 alt={movie.Title}
@@ -15,8 +15,10 @@ export default function Home( { results }) {
                 className="w-full"
               />
               <div className="p-[2%]">
-                <h3 className="w-[72%] pb-[2px] text-[8px] sm:text-[10px] md:text-[12px] lg:text-[14px] xl:text-[16px] font-semibold">{movie.Title}</h3>
-                <p className="text-[6px] sm:text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] text-gray-600">{movie.Year}</p>
+                <div className="w-[75%]">
+                  <h3 className="pb-[2px] text-[8px] sm:text-[10px] md:text-[12px] lg:text-[14px] xl:text-[16px] font-semibold">{movie.Title}</h3>
+                  <p className="text-[6px] sm:text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] text-gray-600">{movie.Year}</p>
+                </div>
               </div>
             </li>
           ))}
