@@ -7,3 +7,10 @@ export async function searchMovies(query) {
   const data = await res.json();
   return data;
 }
+
+// Search by imdbID
+export async function getMovie(id) {
+  const res = await fetch(`${BASE_URL}?apikey=${API_KEY}&i=${encodeURIComponent(id)}`);
+  const data = await res.json();
+  return data;
+}
