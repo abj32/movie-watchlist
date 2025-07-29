@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { searchMovies } from "../services/omdb.js";
+import { searchMovies, getMovieDetails } from "../services/omdb.js";
 
 export default function SearchBar({ setResults }) {
   const [query, setQuery] = useState("");
@@ -17,10 +17,13 @@ export default function SearchBar({ setResults }) {
     const results = await searchMovies(query);
     if (results.Response === "True" && results.Search) {
       console.log(results.Search)
-      // Filter out duplicate movies and limit to 5
-      setResults(results.Search.filter((movie, index, self) =>
-        index === self.findIndex((m) => m.imdbID === movie.imdbID)).slice(0, 10));
 
+      // Filter out duplicate movies and limit to 10
+      const uniqueMovies = results.Search.filter((movie, index, self) => index === self.findIndex((m) => m.imdbID === movie.imdbID)).slice(0, 10);
+      // Get movie details by imdbID
+      const detailedMovies = await Promise.all(uniqueMovies.map((movie) => getMovieDetails(movie.imdbID)));
+
+      setResults(detailedMovies)
       navigate("/");
     } else {
       setResults([]);
