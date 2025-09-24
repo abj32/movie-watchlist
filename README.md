@@ -22,15 +22,19 @@ Movie Watchlist is a full-stack project for discovering films, searching the OMD
    npm install
    ```
 
-   The root `package.json` includes a `postinstall` script that fans out to the `client/` app automatically, so you only need to run `npm install` once at the root to hydrate the frontend. As we build out the backend we will extend the same hook to install server dependencies, and once the server side is complete the repository will transition into an npm workspace so the root install orchestrates every package automatically.
+   The root `package.json` is configured so you don’t need to `cd` into the `client/` directory to install dependencies or start the dev server manually. Instead, you only need to run `npm install` once at the root and the `predev` hook will install client dependencies. As we build out the backend we will extend the same hook to install server dependencies, and once the server side is complete the repository will transition into an npm workspace so the root install orchestrates every package automatically.
 
 ### Running the Development Server
+This command uses `concurrently` to start both the frontend (Vite dev server) and the backend server.
 From the project root run:
 ```bash
 npm run dev
 ```
 
-This command uses `concurrently` to start both the frontend (Vite dev server) and the lightweight backend stub. While the persistent database layer is still in progress you can continue working on the client app by starting it directly:
+- `start-client` runs the Vite development server from the client/ directory
+- `start-server` currently just echoes a placeholder message (`"No server yet — skipping"`).
+
+ While the persistent database layer is still in progress you can work on the client app exclusively by starting it directly:
 ```bash
 npm run start-client
 ```

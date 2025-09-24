@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm install --prefix client",
-    "dev": "concurrently \"npm:start-server\" \"npm:start-client\"",
-    "start-server": "npm --prefix server run dev",
-    "start-client": "npm --prefix client run dev"
+    "dev": "concurrently \"npm run start-server\" \"npm run start-client\"",
+    
+    "start-server": "echo 'No server yet — skipping'",
+    "start-client": "npm --prefix client run dev",
+
+    "client:install": "npm --prefix client install",
+    "predev": "npm run client:install"
   },
   "keywords": [],
   "author": "",
