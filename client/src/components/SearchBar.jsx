@@ -9,8 +9,7 @@ export default function SearchBar({ setResults }) {
   async function handleSubmit(e) {
     e.preventDefault(); // prevents page reload
     
-    // Do nothing on blank search
-    if (query.trim() === "") return;
+    if (query.trim() === "") return;  // Do nothing on blank search
 
     setResults([]); // Clear results
 
