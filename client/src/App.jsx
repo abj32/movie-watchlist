@@ -15,6 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-gray-200">
+        {/* Header area for logo, search bar, and watchlist (later user profile) */}
         <header className="relative bg-indigo-600 text-white px-1 sm:px-2 md:px-3 lg:px-4 xl:px-5 py-10 flex flex-row items-center">
           <NavLink to="/" onClick={handleHome} className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wide" style={{ fontFamily: "'Lilita_One', cursive, sans-serif" }}>
             🎥ReelSearch
@@ -31,6 +32,7 @@ function App() {
           </div>
         </header>
 
+        {/* Main area for displaying search results and user watchlist */}
         <main className="p-3 sm:p-4 md:p-5 lg:p-6">
           <Routes>
             <Route path="/" element={<Home results={results} watchlist={watchlist} setWatchlist={setWatchlist} />} />
