@@ -24,6 +24,15 @@ Movie Watchlist is a full-stack project for discovering films, searching the OMD
 
    The backend is not yet implemented. At this stage, the project runs entirely on the client side, with all dependencies managed from the root. The `predev` hook automatically installs client dependencies when needed. Once the backend is introduced, this setup will be expanded to include server dependencies and evolve into a unified npm workspace for managing all packages seamlessly.
 
+3. **Set Up Environment Variables**
+   The frontend uses the [OMDb API](https://www.omdbapi.com/) for movie search and details.
+   Create a `.env` file inside the `client/` directory and add your OMDb API key:
+   ```bash
+   VITE_OMDB_API_KEY=your_api_key_here
+   ```
+   You can obtain a free key from https://www.omdbapi.com/apikey.aspx.
+   > **Note:** The key is used by the client during development. Once the backend and user accounts are implemented, this key will be stored securely on the server instead.
+
 ### Running the Development Server
 This command uses `concurrently` to start both the frontend (Vite dev server) and the backend server.
 From the project root run:
