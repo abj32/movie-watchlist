@@ -22,7 +22,7 @@ Movie Watchlist is a full-stack project for discovering films, searching the OMD
    npm install
    ```
 
-   The root `package.json` is configured so you don’t need to `cd` into the `client/` directory to install dependencies or start the dev server manually. Instead, you only need to run `npm install` once at the root and the `predev` hook will install client dependencies. As we build out the backend we will extend the same hook to install server dependencies, and once the server side is complete the repository will transition into an npm workspace so the root install orchestrates every package automatically.
+   The backend is not yet implemented. At this stage, the project runs entirely on the client side, with all dependencies managed from the root. The `predev` hook automatically installs client dependencies when needed. Once the backend is introduced, this setup will be expanded to include server dependencies and evolve into a unified npm workspace for managing all packages seamlessly.
 
 ### Running the Development Server
 This command uses `concurrently` to start both the frontend (Vite dev server) and the backend server.
