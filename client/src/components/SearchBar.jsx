@@ -15,7 +15,7 @@ export default function SearchBar({ setResults }) {
 
     // First OMDb API call to get list of relevant movies/shows
     const results = await searchMovies(query);
-    if (results.Response && results.Search) {
+    if (results.Response == "True"  && results.Search) {
       console.log("Raw result: " + JSON.stringify(results.Search) + "\n\n\n")
 
       // Filter out duplicate movies/shows and limit to 10
@@ -27,7 +27,7 @@ export default function SearchBar({ setResults }) {
 
       // Get movie/show details by using second OMDb API call and seaching by imdbID
       const detailedMovies = await Promise.all(uniqueMovies.map((movie) => getMovieDetails(movie.imdbID)));
-      console.log("Detailed movie result: " + JSON.stringify(detailedMovies) + "\n")
+      console.log("Detailed movie result: " + JSON.stringify(detailedMovies) + "\n\n*********************************************************************\n")
 
       // Set the final array of detailed movies/shows and navigates back to the home screen to display results
       setResults(detailedMovies)
@@ -45,7 +45,7 @@ export default function SearchBar({ setResults }) {
         placeholder="Search for Movie Title..."
         value={query}
         onChange={e => setQuery(e.target.value)}
-        className="w-full p-3 text-base sm:text-lg md:text-xl indent-1 sm:indent-2 md:indent-3 lg:indent-4 rounded-full shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        className="p-3 w-full text-base sm:text-lg md:text-xl indent-1 sm:indent-2 md:indent-3 lg:indent-4 border border-gray-300 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
       />
     </form>
   )
