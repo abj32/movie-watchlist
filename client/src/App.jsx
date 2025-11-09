@@ -22,10 +22,12 @@ function App() {
             🎥ReelSearch
           </NavLink>
 
+          {/* Search Bar */}
           <div className="absolute left-1/2 -translate-x-1/2 w-1/3">
             <SearchBar setResults={setResults} />
           </div>
 
+          {/* Watchlist button */}
           <div className="absolute translate-x-[115px] left-1/2 sm:translate-x-[140px] md:translate-x-[180px] lg:translate-x-[225px] xl:translate-x-[300px]">
             <NavLink to="/watchlist" className="text-xs md:text-sm lg:text-base xl:text-lg hover:underline">
               My Watchlist
@@ -37,7 +39,7 @@ function App() {
         <main className="p-3 sm:p-4 md:p-5 lg:p-6">
           <Routes>
             <Route path="/" element={<Home results={results} watchlist={watchlist} setWatchlist={setWatchlist} />} />
-            <Route path="/watchlist" element={<Watchlist watchlist={watchlist} />} />
+            <Route path="/watchlist" element={<Watchlist watchlist={watchlist} setWatchlist={setWatchlist} />} />
           </Routes>
         </main>
       </div>
