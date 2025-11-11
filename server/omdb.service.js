@@ -13,22 +13,20 @@ async function getMovieDetails(id) {
   return res.json();
 }
 
-// Detailed search used by SearchBar 
+// Detailed search used by SearchBar and Watchlist
 export async function detailedSearch(query, { max = 10 } = {}) {
   // First OMDb API call to get list of relevant movies/shows
   const base = await searchByTitle(query);
   // Return no result on bad search
-  if (base?.Response !== 'True' || !Array.isArray(base.Search)) return [];
+  if (base.Response !== "True" || !base.Search) return [];
 
   // Filter out duplicate movies/shows
   const seen = new Set();
-  const unique = [];
-  for (const m of base.Search) {
-    if (!seen.has(m.imdbID)) {
-      seen.add(m.imdbID);
-      unique.push(m);
-    }
-  }
+  const unique = base.Search.filter(movie => {
+    if (seen.has(movie.imdbID)) return false;
+    seen.add(movie.imdbID);
+    return true;
+  });
 
   // Get final list of movies with their details
   const detailed = await Promise.all(unique.map(m => getMovieDetails(m.imdbID)));
