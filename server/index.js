@@ -3,9 +3,9 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
-import authRoutes from './auth.routes.js';
-import searchRoutes from './search.routes.js';
-import watchlistRoutes from './watchlist.routes.js';
+import authRoutes from './routes/auth.routes.js';
+import searchRoutes from './routes/search.routes.js';
+import watchlistRoutes from './routes/watchlist.routes.js';
 
 const app = express();
 export const prisma = new PrismaClient();

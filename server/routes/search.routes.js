@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { detailedSearch } from './omdb.service.js';
+import { detailedSearch } from '../omdb.service.js';
 
 const router = Router();
 
