@@ -1,22 +1,22 @@
 const API_KEY = process.env.API_KEY;
 const BASE_URL = "https://www.omdbapi.com/";
 
-// Search by title
-async function searchByTitle(query) {
+// Get list of movies/shows with title similar to given query
+async function getMovies(query) {
   const res = await fetch(`${BASE_URL}?apikey=${API_KEY}&s=${encodeURIComponent(query)}`);
   return res.json();
 }
 
-// Search by imdbID
-async function getMovieDetails(id) {
+// Get details of given movie/show id
+export async function getMovieDetails(id) {
   const res = await fetch(`${BASE_URL}?apikey=${API_KEY}&i=${encodeURIComponent(id)}`);
   return res.json();
 }
 
-// Detailed search used by SearchBar and Watchlist
-export async function detailedSearch(query, { max = 10 } = {}) {
+// Combined list and detailed search used by SearchBar
+export async function combinedSearch(query) {
   // First OMDb API call to get list of relevant movies/shows
-  const base = await searchByTitle(query);
+  const base = await getMovies(query);
   // Return no result on bad search
   if (base.Response !== "True" || !base.Search) return [];
 

@@ -1,7 +1,7 @@
 {
   "name": "movie-watchlist",
   "version": "1.0.0",
-  "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run start-server\" \"npm run start-client\"",

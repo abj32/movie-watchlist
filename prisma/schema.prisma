@@ -23,14 +23,14 @@ model User {
 
 model WatchlistItem {
   userId    Int
-  imdbID    String
+  imdbId    String
   title     String
   poster    String?
-  year      String?
-  type      String?
+  year      String
+  type      String
   rated     String?
-  genre     String?
-  plot      String?
+  genre     String
+  plot      String
 
   // Raw strings from OMDb for display/debug
   imdbRaw   String?   // e.g. "8.7/10"
@@ -39,7 +39,7 @@ model WatchlistItem {
 
   // Normlized numeric columns for sorting/filtering
   imdbScore   Float?
-  rtPercent   Int?
+  rtScore     Int?
   mcScore     Int?
 
   // Average of the 3 available scores
@@ -49,11 +49,10 @@ model WatchlistItem {
 
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@id([userId, imdbID])
-  @@index([imdbID])
+  @@id([userId, imdbId])
   @@index([userId, createdAt])
   @@index([userId, imdbScore])
-  @@index([userId, rtPercent])
+  @@index([userId, rtScore])
   @@index([userId, mcScore])
   @@index([userId, sortScore])
 }

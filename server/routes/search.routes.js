@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { detailedSearch } from '../omdb.service.js';
+import { combinedSearch } from '../services/omdb.service.js';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
   try {
-    const results = await detailedSearch(req.query.q.toString());
+    const results = await combinedSearch(req.query.q.toString());
     res.json(results);
   } catch (e) {
     console.error(e);

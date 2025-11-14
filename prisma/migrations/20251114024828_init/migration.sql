@@ -11,31 +11,28 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "WatchlistItem" (
     "userId" INTEGER NOT NULL,
-    "imdbID" TEXT NOT NULL,
+    "imdbId" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "poster" TEXT,
-    "year" TEXT,
-    "type" TEXT,
+    "year" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
     "rated" TEXT,
-    "genre" TEXT,
-    "plot" TEXT,
+    "genre" TEXT NOT NULL,
+    "plot" TEXT NOT NULL,
     "imdbRaw" TEXT,
     "rtRaw" TEXT,
     "mcRaw" TEXT,
     "imdbScore" DOUBLE PRECISION,
-    "rtPercent" INTEGER,
+    "rtScore" INTEGER,
     "mcScore" INTEGER,
     "sortScore" DOUBLE PRECISION,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "WatchlistItem_pkey" PRIMARY KEY ("userId","imdbID")
+    CONSTRAINT "WatchlistItem_pkey" PRIMARY KEY ("userId","imdbId")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
-
--- CreateIndex
-CREATE INDEX "WatchlistItem_imdbID_idx" ON "WatchlistItem"("imdbID");
 
 -- CreateIndex
 CREATE INDEX "WatchlistItem_userId_createdAt_idx" ON "WatchlistItem"("userId", "createdAt");
@@ -44,7 +41,7 @@ CREATE INDEX "WatchlistItem_userId_createdAt_idx" ON "WatchlistItem"("userId", "
 CREATE INDEX "WatchlistItem_userId_imdbScore_idx" ON "WatchlistItem"("userId", "imdbScore");
 
 -- CreateIndex
-CREATE INDEX "WatchlistItem_userId_rtPercent_idx" ON "WatchlistItem"("userId", "rtPercent");
+CREATE INDEX "WatchlistItem_userId_rtScore_idx" ON "WatchlistItem"("userId", "rtScore");
 
 -- CreateIndex
 CREATE INDEX "WatchlistItem_userId_mcScore_idx" ON "WatchlistItem"("userId", "mcScore");

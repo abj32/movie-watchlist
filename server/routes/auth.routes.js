@@ -2,6 +2,7 @@ import { Router } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { prisma } from '../index.js';
+import { requireAuth } from '../middleware/requireAuth.js';
 
 const router = Router();
 
