@@ -1,19 +1,60 @@
-import { useState } from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import Home from './pages/Home';
-import Watchlist from './pages/Watchlist';
 import SearchBar from "./components/SearchBar";
 
-function App() {
-  const [results, setResults] = useState([]);
-  const [watchlist, setWatchlist] = useState([]);
+import { getProfile, logout } from "./services/auth";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Profile from "./pages/Profile";
+import Watchlist from './pages/Watchlist';
 
+
+function AppShell() {
+  const [results, setResults] = useState([]);   // stores results of search
+
+  const [user, setUser] = useState(null);        // stores logged-in user (or null)
+  const [checkingAuth, setCheckingAuth] = useState(true); // while we call /auth/profile on load
+  const [menuOpen, setMenuOpen] = useState(false);        // dropdown state
+  const [watchlist, setWatchlist] = useState([]);   // stores watchlist
+
+  const navigate = useNavigate();
+  
+  // Clear search results (for when user clicks home button)
   function handleHome() {
     setResults([]);
   }
 
+  // Check if user is logged in on first load via their cookie
+  useEffect(() => {
+    (async () => {
+      try {
+        const profile = await getProfile();  // GET /api/auth/profile
+        setUser(profile);
+      } catch (err) {
+        if (err.status !== 401) { // If error other than "user not logged in"
+          console.error("Failed to load profile", err);
+        }
+      } finally {
+        setCheckingAuth(false);
+      }
+    })();
+  }, []);
+
+  async function handleLogout() {
+    try {
+      await logout(); // POST /api/auth/logout
+    } catch (err) {
+      console.error("Logout failed", err);
+    } finally {
+      setUser(null);
+      setWatchlist([]);
+      setMenuOpen(false);
+      navigate("/");
+    }
+  }
+
   return (
-    <BrowserRouter>
       <div className="flex flex-col min-h-screen bg-gray-200">
         {/* Header area for logo, search bar, and watchlist (later user profile) */}
         <header className="flex flex-row items-center relative px-1 sm:px-2 md:px-3 lg:px-4 xl:px-5 py-10 text-white bg-indigo-600 ">
@@ -43,8 +84,13 @@ function App() {
           </Routes>
         </main>
       </div>
-    </BrowserRouter>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppShell />
+    </BrowserRouter>
+  );
+}
