@@ -1,4 +1,4 @@
-import { request } from "./auth";
+import { request } from "./api";
 
 function normalizeMovie(movie) {
   // Build a Ratings array from raw strings
