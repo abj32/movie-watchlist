@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
     const user = await prisma.user.create({ data: { email, passwordHash: hash } });
 
     res.cookie('sid', sign(user.id), COOKIE_OPTS);
-    res.status(201).json({ id: user.id, email: user.email });
+    res.status(201).json({ id: user.id, email: user.email, createdAt: user.createdAt });
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: 'Server error' });
@@ -48,7 +48,7 @@ router.post('/login', async (req, res) => {
     if (!ok) return res.status(401).json({ message: 'Invalid password' });
 
     res.cookie('sid', sign(user.id), COOKIE_OPTS);
-    res.json({ id: user.id, email: user.email });
+    res.json({ id: user.id, email: user.email, createdAt: user.createdAt });
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: 'Server error' });
