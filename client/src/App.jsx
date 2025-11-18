@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import SearchBar from "./components/SearchBar";
 
 import { getProfile, logout } from "./services/auth";
+import { fetchWatchlist } from './services/watchlist';
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
@@ -40,6 +41,23 @@ function AppShell() {
       }
     })();
   }, []);
+
+  // Sync watchlist when user changes
+  useEffect(() => {
+  if (!user) {
+    setWatchlist([]);
+    return;
+  }
+
+  (async () => {
+    try {
+      const items = await fetchWatchlist();
+      setWatchlist(items);
+    } catch (err) {
+      console.error("Failed to load watchlist", err);
+    }
+  })();
+}, [user]);
 
   async function handleLogout() {
     try {
