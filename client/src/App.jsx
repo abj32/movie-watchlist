@@ -44,20 +44,20 @@ function AppShell() {
 
   // Sync watchlist when user changes
   useEffect(() => {
-  if (!user) {
-    setWatchlist([]);
-    return;
-  }
-
-  (async () => {
-    try {
-      const items = await fetchWatchlist();
-      setWatchlist(items);
-    } catch (err) {
-      console.error("Failed to load watchlist", err);
+    if (!user) {
+      setWatchlist([]);
+      return;
     }
-  })();
-}, [user]);
+
+    (async () => {
+      try {
+        const items = await fetchWatchlist();
+        setWatchlist(items);
+      } catch (err) {
+        console.error("Failed to load watchlist", err);
+      }
+    })();
+  }, [user]);
 
   async function handleLogout() {
     try {
@@ -136,7 +136,7 @@ function AppShell() {
         <main className="p-3 sm:p-4 md:p-5 lg:p-6">
           <Routes>
             {/* Home page */}
-            <Route path="/" element={<Home results={results} watchlist={watchlist} setWatchlist={setWatchlist} />} />
+            <Route path="/" element={<Home user={user} results={results} watchlist={watchlist} setWatchlist={setWatchlist} />} />
 
             {/* Register route */}
             <Route path="/register" element={<Register onAuth={setUser}/>}/>

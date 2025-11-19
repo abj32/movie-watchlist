@@ -31,6 +31,8 @@ model WatchlistItem {
   rated     String?
   genre     String
   plot      String
+  director  String
+  actors    String
 
   // Raw strings from OMDb for display/debug
   imdbRaw   String?   // e.g. "8.7/10"

@@ -23,9 +23,22 @@ function normalizeMovie(movie) {
   }
 
   return {
-    ...movie,
     imdbID: movie.imdbId,
+    Title: movie.title,
+    Poster: movie.poster,
+    Year: movie.year,
+    Type: movie.type,
+    Rated: movie.rated,
+    Genre: movie.genre,
+    Plot: movie.plot,
+    Director: movie.director,
+    Actors: movie.actors,
+
     Ratings: ratings,
+    imdbScore: movie.imdbScore,
+    rtScore: movie.rtScore,
+    mcScore: movie.mcScore,
+    sortScore: movie.sortScore,
   };
 }
 

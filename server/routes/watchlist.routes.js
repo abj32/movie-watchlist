@@ -60,6 +60,8 @@ router.post('/', requireAuth, async (req, res) => {
       rated: movie.Rated !== 'N/A' ? movie.Rated : null,
       genre: movie.Genre,
       plot: movie.Plot,
+      director: movie.Director,
+      actors: movie.Actors,
 
       // Raw string rating
       imdbRaw,

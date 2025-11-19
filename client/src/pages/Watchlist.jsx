@@ -1,7 +1,14 @@
+import { removeFromWatchlist } from "../services/watchlist";
+
 export default function Watchlist({ watchlist, setWatchlist }) {
 
-  function handleDelete(imdbID) {
-    setWatchlist(prev => prev.filter(m => m.imdbID !== imdbID));
+  async function handleDelete(imdbID) {
+    try {
+      await removeFromWatchlist(imdbID);
+      setWatchlist(prev => prev.filter(m => m.imdbID !== imdbID));
+    } catch (err) {
+      console.error("Failed to remove movie", err);
+    }
   }
 
   function getRatingLabel(movie, source) {
@@ -54,7 +61,7 @@ export default function Watchlist({ watchlist, setWatchlist }) {
                   {/* Movie Poster */}
                   <img
                     className="w-[17%] rounded"
-                    src={movie.Poster !== "N/A" ? movie.Poster : "https://placehold.co/300x412?text=No+Image"}
+                    src={movie.Poster || "https://placehold.co/300x412?text=No+Image"}
                     alt={movie.Title}
                     onError={(e) => {
                       e.target.onerror = null;
