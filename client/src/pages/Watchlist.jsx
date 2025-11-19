@@ -15,6 +15,12 @@ export default function Watchlist({ watchlist, setWatchlist }) {
     return movie.Ratings.find(r => r.Source === source)?.Value || "N/A";
   }
 
+  const TYPE_STYLES = {
+  movie:  { color: "bg-red-500",   label: "M" },
+  series: { color: "bg-teal-500",  label: "S" },
+  game:   { color: "bg-purple-500", label: "G" },
+  }
+
   return (
     <div>
       <h2 className="mb-[2.75%] sm:mb-[2.5%] md:mb-[2.25%] lg:mb-[2%] xl:mb-[1.75%] text-sm sm:text-base md:text-lg xl:text-xl font-semibold text-indigo-600 text-center">Your Watchlist</h2>
@@ -22,10 +28,12 @@ export default function Watchlist({ watchlist, setWatchlist }) {
       {watchlist.length > 0 && (
         <ul>
           {watchlist.map((movie) => {
+            const { color, label } = TYPE_STYLES[movie.Type];
+
             const imdb = getRatingLabel(movie, "Internet Movie Database");
             const rt   = getRatingLabel(movie, "Rotten Tomatoes");
             const mc   = getRatingLabel(movie, "Metacritic");
-
+            
             return (
               <li key={movie.imdbID} className="group relative m-[1%] my-[2%] md:my-[1.5%] xl:my-[1%] bg-white rounded-lg shadow-md">
                 {/* Top bar displays movie\show title, year, type, age rating, and genres */}
@@ -37,11 +45,8 @@ export default function Watchlist({ watchlist, setWatchlist }) {
 
                   {/* Entertainment Type */}
                   <span
-                      className={`flex justify-center m-[.6%] md:m-[.5%] l:m-[.4%] xl:m-[.3%] ml-[3%] md:ml-[3%] xl:ml-[3%] p-[.2%] w-[14px] sm:w-[16px] md:w-[18px] lg:w-[22px] xl:w-[26px] text-white text-[6px] sm:text-[7px] md:text-[8px] lg:text-[9px] xl:text-[10px] font-bold rounded ${
-                        movie.Type === "movie" ? "bg-red-500" : "bg-teal-500"
-                      }`}
-                    >
-                      {movie.Type === "movie" ? "M" : "S"}
+                      className={`flex justify-center m-[.6%] md:m-[.5%] l:m-[.4%] xl:m-[.3%] ml-[3%] md:ml-[3%] xl:ml-[3%] p-[.2%] w-[14px] sm:w-[16px] md:w-[18px] lg:w-[22px] xl:w-[26px] text-white text-[6px] sm:text-[7px] md:text-[8px] lg:text-[9px] xl:text-[10px] font-bold rounded ${color}`}>
+                      {label}
                   </span>
                   {/* Age Rating */}
                   <span className="flex m-[.6%] md:m-[.5%] l:m-[.4%] xl:m-[.3%] p-[.2%] px-[.5%] text-[6px] sm:text-[7px] md:text-[8px] lg:text-[9px] xl:text-[10px] font-semibold text-gray-700 bg-gray-200 border border-gray-400 rounded">
