@@ -19,6 +19,8 @@ CREATE TABLE "WatchlistItem" (
     "rated" TEXT,
     "genre" TEXT NOT NULL,
     "plot" TEXT NOT NULL,
+    "director" TEXT NOT NULL,
+    "actors" TEXT NOT NULL,
     "imdbRaw" TEXT,
     "rtRaw" TEXT,
     "mcRaw" TEXT,
