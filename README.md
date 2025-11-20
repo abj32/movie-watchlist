@@ -2,6 +2,8 @@
 
 Movie Watchlist is a full-stack app for discovering movies/shows/games through the OMDb catalog and saving items to a personal watchlist backed by PostgreSQL. The watchlist stores expanded metadata (plot, director, actors, critic ratings) so saved items are more detailed than search results.
 
+<br>
+
 ## Tech Stack
 - **Frontend:** Vite + React + React Router + Tailwind CSS  
 - **Backend:** Node.js + Express + Prisma + PostgreSQL (tested with Neon)
@@ -47,6 +49,8 @@ movie-watchlist/
 ├─ package.json             # Root scripts for dev / server / client
 └─ README.md
 ```
+
+<br>
 
 ## Features
 
@@ -199,7 +203,7 @@ Once `npm run dev` is running:
 
 <br>
 
-Stay tuned for updates!
+**Stay tuned for updates!**
 
 <br>
 
