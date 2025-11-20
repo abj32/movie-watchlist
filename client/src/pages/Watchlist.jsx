@@ -90,7 +90,7 @@ export default function Watchlist({ watchlist, setWatchlist }) {
                     <p className="mt-[2%] text-xs md:text-sm xl:text-base"><strong>Ratings</strong></p>
                     <div className="flex text-xs md:text-sm xl:text-base text-gray-700">                    
                       {/* IMDB Score */}
-                      <p><strong>IMDB:</strong> {imdb}</p>
+                      <p><strong>IMDb:</strong> {imdb}</p>
                       {/* Rotten Tomatoes Score */}
                       <p className="ml-[3%]"><strong>Rotten Tomatoes:</strong> {rt}</p>
                       {/* Metacritic Score */}

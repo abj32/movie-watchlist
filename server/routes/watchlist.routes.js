@@ -28,7 +28,7 @@ router.post('/', requireAuth, async (req, res) => {
     const { imdbId } = req.body ?? {};
 
     if (!imdbId) {
-      return res.status(400).json({ message: 'imdbID is required' });
+      return res.status(400).json({ message: 'imdbId is required' });
     }
 
     // Check if item already exists for this user
@@ -39,7 +39,7 @@ router.post('/', requireAuth, async (req, res) => {
     if (existing) {
       return res
         .status(409)
-        .json({ message: 'Movie is already in your watchlist' });
+        .json({ message: 'Item is already in your watchlist' });
     }
 
     // Fetch full movie details from OMDb
@@ -98,7 +98,7 @@ router.delete('/:imdbId', requireAuth, async (req, res) => {
     res.json({ ok: true });
   } catch (err) {
     if (err.code === 'P2025') {
-      return res.status(404).json({ message: 'Movie not found in watchlist' });
+      return res.status(404).json({ message: 'Item not found in watchlist' });
     }
 
     console.error(err);
