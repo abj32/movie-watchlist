@@ -1,14 +1,12 @@
 {
   "name": "movie-watchlist",
   "version": "1.0.0",
-  "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run start-server\" \"npm run start-client\"",
-    
-    "start-server": "echo 'No server yet — skipping'",
+    "start-server": "nodemon server/index.js",
     "start-client": "npm --prefix client run dev",
-
     "client:install": "npm --prefix client install",
     "predev": "npm run client:install"
   },
@@ -17,6 +15,16 @@
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^9.2.0",
-    "dotenv": "^17.0.1"
+    "dotenv": "^17.2.3",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.19.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.0",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
   }
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { searchMovies, getMovieDetails } from "../services/omdb.js";
+import { searchMovies } from "../services/search";
 
 export default function SearchBar({ setResults }) {
   const [query, setQuery] = useState("");
@@ -13,28 +13,12 @@ export default function SearchBar({ setResults }) {
 
     setResults([]); // Clear results
 
-    // First OMDb API call to get list of relevant movies/shows
-    const results = await searchMovies(query);
-    if (results.Response == "True"  && results.Search) {
-      console.log("Raw result: " + JSON.stringify(results.Search) + "\n\n\n")
-
-      // Filter out duplicate movies/shows and limit to 10
-      const uniqueMovies = results.Search.filter((movie, index, self) => index === self.findIndex((m) => m.imdbID === movie.imdbID));
-      console.log("Unique filter result: " + JSON.stringify(uniqueMovies) + "\n\n\n")
-
-      // Check if filter did anything
-      console.log((JSON.stringify(results.Search) == JSON.stringify(uniqueMovies)) + "\n\n\n")
-
-      // Get movie/show details by using second OMDb API call and seaching by imdbID
-      const detailedMovies = await Promise.all(uniqueMovies.map((movie) => getMovieDetails(movie.imdbID)));
-      console.log("Detailed movie result: " + JSON.stringify(detailedMovies) + "\n\n*********************************************************************\n")
-
-      // Set the final array of detailed movies/shows and navigates back to the home screen to display results
-      setResults(detailedMovies)
+    try {
+      const movies = await searchMovies(query);
+      setResults(movies);
       navigate("/");
-    } else {
-      setResults([]);
-      console.error("Search failed:", results.Error);
+    } catch (err) {
+      console.error("Search failed", err);
     }
   }
 
